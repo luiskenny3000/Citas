@@ -1,0 +1,2 @@
+class Resouce < ApplicationRecord
+end

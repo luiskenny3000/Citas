@@ -1,0 +1,1 @@
+json.partial! "resouces/resouce", resouce: @resouce

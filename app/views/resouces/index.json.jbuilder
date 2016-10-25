@@ -1,0 +1,1 @@
+json.array! @resouces, partial: 'resouces/resouce', as: :resouce

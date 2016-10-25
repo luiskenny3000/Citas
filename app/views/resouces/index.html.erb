@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Resouces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @resouces.each do |resouce| %>
+      <tr>
+        <td><%= resouce.name %></td>
+        <td><%= link_to 'Show', resouce %></td>
+        <td><%= link_to 'Edit', edit_resouce_path(resouce) %></td>
+        <td><%= link_to 'Destroy', resouce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Resouce', new_resouce_path %>
