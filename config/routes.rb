@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  resources :horaries
+  resources :reservations
+  resources :disables
+  resources :admins
+  resources :rooms
   resources :teachers
   resources :observations
   resources :resources
-  resources :resouces
   resources :departments
   resources :centers
   root "centers#index"

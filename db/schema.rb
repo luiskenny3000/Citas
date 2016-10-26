@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025143225) do
+ActiveRecord::Schema.define(version: 20161026021229) do
 
   create_table "centers", force: :cascade do |t|
     t.string   "name"
@@ -33,16 +33,28 @@ ActiveRecord::Schema.define(version: 20161025143225) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "resouces", force: :cascade do |t|
+  create_table "resources", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "resources", force: :cascade do |t|
+  create_table "resources_rooms", id: false, force: :cascade do |t|
+    t.integer "resource_id"
+    t.integer "room_id"
+    t.index ["resource_id"], name: "index_resources_rooms_on_resource_id"
+    t.index ["room_id"], name: "index_resources_rooms_on_room_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.string   "location"
+    t.integer  "capacity"
+    t.integer  "center_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["center_id"], name: "index_rooms_on_center_id"
   end
 
   create_table "teachers", force: :cascade do |t|

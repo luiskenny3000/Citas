@@ -1,0 +1,1 @@
+json.partial! "disables/disable", disable: @disable

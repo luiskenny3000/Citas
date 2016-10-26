@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Begin:</strong>
+  <%= @disable.begin %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @disable.end %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @disable.room %>
+</p>
+
+<%= link_to 'Edit', edit_disable_path(@disable) %> |
+<%= link_to 'Back', disables_path %>

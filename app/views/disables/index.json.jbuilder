@@ -1,0 +1,1 @@
+json.array! @disables, partial: 'disables/disable', as: :disable
