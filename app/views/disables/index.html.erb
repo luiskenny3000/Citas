@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Disables</h1>
+<h1>Periodos No Reservables</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Begin</th>
-      <th>End</th>
-      <th>Room</th>
+      <th>Salón</th>
+      <th>Fecha Inicial</th>
+      <th>Fecha Final</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,12 +15,12 @@
   <tbody>
     <% @disables.each do |disable| %>
       <tr>
+        <td><%= disable.room.name%></td>
         <td><%= disable.begin %></td>
         <td><%= disable.end %></td>
-        <td><%= disable.room %></td>
-        <td><%= link_to 'Show', disable %></td>
-        <td><%= link_to 'Edit', edit_disable_path(disable) %></td>
-        <td><%= link_to 'Destroy', disable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', disable %></td>
+        <td><%= link_to 'Editar', edit_disable_path(disable) %></td>
+        <td><%= link_to 'Eliminar', disable, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Disable', new_disable_path %>
+<%= link_to 'Nuevo Período No Reservable', new_disable_path %>

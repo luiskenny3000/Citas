@@ -1,34 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombres:</strong>
   <%= @admin.name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
+  <strong>Apellidos:</strong>
   <%= @admin.last_name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>Correo Electrónico:</strong>
   <%= @admin.email %>
 </p>
 
 <p>
-  <strong>Telephone:</strong>
+  <strong>Teléfono:</strong>
   <%= @admin.telephone %>
 </p>
 
 <p>
-  <strong>Password:</strong>
-  <%= @admin.password %>
+  <strong>Campus:</strong>
+  <%= @admin.center.name %>
 </p>
 
-<p>
-  <strong>Center:</strong>
-  <%= @admin.center %>
-</p>
-
-<%= link_to 'Edit', edit_admin_path(@admin) %> |
-<%= link_to 'Back', admins_path %>
+<%= link_to 'Editar', edit_admin_path(@admin) %> |
+<%= link_to 'Atrás', admins_path %>

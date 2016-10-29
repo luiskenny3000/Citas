@@ -1,7 +1,7 @@
 <%= form_for(horary) do |f| %>
   <% if horary.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(horary.errors.count, "error") %> prohibited this horary from being saved:</h2>
+      <h2><%= pluralize(horary.errors.count, "error") %> No tiene permitido guardar este Horario:</h2>
 
       <ul>
       <% horary.errors.full_messages.each do |message| %>
@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :reservation_id %>
-    <%= f.text_field :reservation_id %>
+    <%= f.label "Reservación" %>
+    <%= f.select :reservation_id, options_for_select(Reservation.all.map{|c| [c.description, c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
   <div class="field">
-    <%= f.label :date %>
+    <%= f.label "Fecha" %>
     <%= f.date_select :date %>
   </div>
 
   <div class="field">
-    <%= f.label :hour %>
+    <%= f.label "Hora Inicio" %>
     <%= f.time_select :hour %>
   </div>
 
   <div class="field">
-    <%= f.label :duration %>
+    <%= f.label "Duración" %>
     <%= f.time_select :duration %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Horario"%>
   </div>
 <% end %>

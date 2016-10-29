@@ -1,7 +1,7 @@
 <%= form_for(resource) do |f| %>
   <% if resource.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
+      <h2><%= pluralize(resource.errors.count, "error") %> No tiene permitido guardar este Recurso:</h2>
 
       <ul>
       <% resource.errors.full_messages.each do |message| %>
@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label "Nombre" %>
     <%= f.text_field :name %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Recurso" %>
   </div>
 <% end %>

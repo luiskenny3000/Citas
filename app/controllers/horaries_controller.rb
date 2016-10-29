@@ -28,7 +28,7 @@ class HorariesController < ApplicationController
 
     respond_to do |format|
       if @horary.save
-        format.html { redirect_to @horary, notice: 'Horary was successfully created.' }
+        format.html { redirect_to horaries_path, notice: 'Horario creado exitosamente.' }
         format.json { render :show, status: :created, location: @horary }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class HorariesController < ApplicationController
   def update
     respond_to do |format|
       if @horary.update(horary_params)
-        format.html { redirect_to @horary, notice: 'Horary was successfully updated.' }
+        format.html { redirect_to horaries_path, notice: 'Horario actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @horary }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class HorariesController < ApplicationController
   def destroy
     @horary.destroy
     respond_to do |format|
-      format.html { redirect_to horaries_url, notice: 'Horary was successfully destroyed.' }
+      format.html { redirect_to horaries_url, notice: 'Horario elimando exitosamente.' }
       format.json { head :no_content }
     end
   end

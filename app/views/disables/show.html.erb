@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Begin:</strong>
+  <strong>Salón:</strong>
+  <%= @disable.room.name %>
+</p>
+
+<p>
+  <strong>Fecha Inicial:</strong>
   <%= @disable.begin %>
 </p>
 
 <p>
-  <strong>End:</strong>
+  <strong>Fecha Final:</strong>
   <%= @disable.end %>
 </p>
 
-<p>
-  <strong>Room:</strong>
-  <%= @disable.room %>
-</p>
-
-<%= link_to 'Edit', edit_disable_path(@disable) %> |
-<%= link_to 'Back', disables_path %>
+<%= link_to 'Editar', edit_disable_path(@disable) %> |
+<%= link_to 'Atrás', disables_path %>

@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
     set_resources
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to rooms_path, notice: 'Salón creado exitosamente.' }
         format.json { render :show, status: :created, location: @room }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       set_resources
       if @room.update(room_params)
-        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
+        format.html { redirect_to rooms_path, notice: 'Salón actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @room }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class RoomsController < ApplicationController
   def destroy
     @room.destroy
     respond_to do |format|
-      format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+      format.html { redirect_to rooms_url, notice: 'Salón eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end

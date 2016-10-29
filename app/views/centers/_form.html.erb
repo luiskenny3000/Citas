@@ -1,7 +1,7 @@
 <%= form_for(center) do |f| %>
   <% if center.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(center.errors.count, "error") %> prohibited this center from being saved:</h2>
+      <h2><%= pluralize(center.errors.count, "error") %> No tiene permitido guardar este Campus:</h2>
 
       <ul>
       <% center.errors.full_messages.each do |message| %>
@@ -12,16 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label "Nombre" %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :address %>
+    <%= f.label "Dirección" %>
     <%= f.text_field :address %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Campus"%>
   </div>
 <% end %>

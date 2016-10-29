@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Reservation:</strong>
-  <%= @horary.reservation %>
+  <strong>Reservación:</strong>
+  <%= @horary.reservation.description %>
 </p>
 
 <p>
-  <strong>Date:</strong>
+  <strong>Fecha:</strong>
   <%= @horary.date %>
 </p>
 
 <p>
-  <strong>Hour:</strong>
+  <strong>Hora Inicio:</strong>
   <%= @horary.hour %>
 </p>
 
 <p>
-  <strong>Duration:</strong>
+  <strong>Duración:</strong>
   <%= @horary.duration %>
 </p>
 
-<%= link_to 'Edit', edit_horary_path(@horary) %> |
-<%= link_to 'Back', horaries_path %>
+<%= link_to 'Editar', edit_horary_path(@horary) %> |
+<%= link_to 'Atrás', horaries_path %>

@@ -28,7 +28,7 @@ class ObservationsController < ApplicationController
 
     respond_to do |format|
       if @observation.save
-        format.html { redirect_to @observation, notice: 'Observation was successfully created.' }
+        format.html { redirect_to observations_path, notice: 'Observación creada exitosamente.' }
         format.json { render :show, status: :created, location: @observation }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ObservationsController < ApplicationController
   def update
     respond_to do |format|
       if @observation.update(observation_params)
-        format.html { redirect_to @observation, notice: 'Observation was successfully updated.' }
+        format.html { redirect_to observations_path, notice: 'Observación actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @observation }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ObservationsController < ApplicationController
   def destroy
     @observation.destroy
     respond_to do |format|
-      format.html { redirect_to observations_url, notice: 'Observation was successfully destroyed.' }
+      format.html { redirect_to observations_url, notice: 'Observación eliminada exitosamente.' }
       format.json { head :no_content }
     end
   end

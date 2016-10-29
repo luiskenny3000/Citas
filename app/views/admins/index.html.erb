@@ -1,16 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Admins</h1>
+<h1>Administradores</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Telephone</th>
-      <th>Password</th>
-      <th>Center</th>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Correo Electrónico</th>
+      <th>Teléfono</th>
+      <th>Campus</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,11 +21,10 @@
         <td><%= admin.last_name %></td>
         <td><%= admin.email %></td>
         <td><%= admin.telephone %></td>
-        <td><%= admin.password %></td>
-        <td><%= admin.center %></td>
-        <td><%= link_to 'Show', admin %></td>
-        <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
-        <td><%= link_to 'Destroy', admin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= admin.center.name %></td>
+        <td><%= link_to 'Ver', admin %></td>
+        <td><%= link_to 'Editar', edit_admin_path(admin) %></td>
+        <td><%= link_to 'Eliminar', admin, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +32,4 @@
 
 <br>
 
-<%= link_to 'New Admin', new_admin_path %>
+<%= link_to 'Nuevo Administrador', new_admin_path %>

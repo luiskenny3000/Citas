@@ -1,7 +1,7 @@
 <%= form_for(teacher) do |f| %>
   <% if teacher.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(teacher.errors.count, "error") %> prohibited this teacher from being saved:</h2>
+      <h2><%= pluralize(teacher.errors.count, "error") %> No tiene permitido guardar este Docente:</h2>
 
       <ul>
       <% teacher.errors.full_messages.each do |message| %>
@@ -12,36 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label "Nombres" %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name %>
+    <%= f.label "Apellidos" %>
     <%= f.text_field :last_name %>
   </div>
 
   <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.label "Correo Electrónico" %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label :telephone %>
-    <%= f.text_field :telephone %>
+    <%= f.label "Teléfono" %>
+    <%= f.telephone_field :telephone %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password %>
+    <%= f.label "Contraseña" %>
+    <%= f.password_field :password %>
   </div>
 
   <div class="field">
-    <%= f.label :department_id %>
+    <%= f.label "Departamento" %>
     <%= f.select :department_id, options_for_select(Department.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Docente" %>
   </div>
 <% end %>

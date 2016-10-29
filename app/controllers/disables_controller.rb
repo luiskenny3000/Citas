@@ -28,7 +28,7 @@ class DisablesController < ApplicationController
 
     respond_to do |format|
       if @disable.save
-        format.html { redirect_to @disable, notice: 'Disable was successfully created.' }
+        format.html { redirect_to disables_path, notice: 'Periodo No Reservable creado exitosamente.' }
         format.json { render :show, status: :created, location: @disable }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class DisablesController < ApplicationController
   def update
     respond_to do |format|
       if @disable.update(disable_params)
-        format.html { redirect_to @disable, notice: 'Disable was successfully updated.' }
+        format.html { redirect_to disables_path, notice: 'Periodo No Reservable actualizado exitosamente.' }
         format.json { render :show, status: :ok, location: @disable }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class DisablesController < ApplicationController
   def destroy
     @disable.destroy
     respond_to do |format|
-      format.html { redirect_to disables_url, notice: 'Disable was successfully destroyed.' }
+      format.html { redirect_to disables_url, notice: 'Periodo No Reservable eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end

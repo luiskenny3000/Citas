@@ -1,7 +1,7 @@
 <%= form_for(reservation) do |f| %>
   <% if reservation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+      <h2><%= pluralize(reservation.errors.count, "error") %> No tiene permitido guardar esta Reservación:</h2>
 
       <ul>
       <% reservation.errors.full_messages.each do |message| %>
@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label "Descripción" %>
     <%= f.text_field :description %>
   </div>
 
   <div class="field">
-    <%= f.label :teacher_id %>
-    <%= f.text_field :teacher_id %>
+    <%= f.label "Docente" %>
+    <%= f.select :teacher_id, options_for_select(Teacher.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
   <div class="field">
-    <%= f.label :room_id %>
-    <%= f.text_field :room_id %>
+    <%= f.label "Salón" %>
+    <%= f.select :room_id, options_for_select(Room.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
   <div class="field">
-    <%= f.label :observation_id %>
-    <%= f.text_field :observation_id %>
+    <%= f.label "Observación" %>
+    <%= f.select :observation_id, options_for_select(Observation.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Reservación"%>
   </div>
 <% end %>

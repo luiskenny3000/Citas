@@ -1,24 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descripción:</strong>
   <%= @reservation.description %>
 </p>
 
 <p>
-  <strong>Teacher:</strong>
-  <%= @reservation.teacher %>
+  <strong>Docente:</strong>
+  <%= @reservation.teacher.name %>
 </p>
 
 <p>
-  <strong>Room:</strong>
-  <%= @reservation.room %>
+  <strong>Salón:</strong>
+  <%= @reservation.room.name %>
 </p>
 
 <p>
-  <strong>Observation:</strong>
-  <%= @reservation.observation %>
+  <strong>Observación:</strong>
+  <%= @reservation.observation.name %>
 </p>
 
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>
+<%= link_to 'Editar', edit_reservation_path(@reservation) %> |
+<%= link_to 'Atrás', reservations_path %>

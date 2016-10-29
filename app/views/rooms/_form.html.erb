@@ -1,7 +1,7 @@
 <%= form_for(room) do |f| %>
   <% if room.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+      <h2><%= pluralize(room.errors.count, "error") %> No tiene permitio guardar este Salón:</h2>
 
       <ul>
       <% room.errors.full_messages.each do |message| %>
@@ -12,38 +12,38 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= f.label "Nombre" %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label "Descripción"%>
     <%= f.text_field :description %>
   </div>
 
   <div class="field">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
-  </div>
-
-  <div class="field">
-    <%= f.label :capacity %>
+    <%= f.label "Capacidad" %>
     <%= f.number_field :capacity %>
   </div>
 
   <div class="field">
-    <%= f.label :center_id %>
+    <%= f.label "Campus" %>
     <%= f.select :center_id, options_for_select(Center.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
   <div class="field">
-    <%= label_tag :resources %><br />
+    <%= f.label "Ubicación" %>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= label_tag "Recursos" %><br />
     <% for resource in Resource.all do  %>
         <%= check_box_tag "room[resource_ids][#{resource.id}]", nil, @room.resources.member?(resource) %><%= resource.name %>
     <% end %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Salón" %>
   </div>
 <% end %>
