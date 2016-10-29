@@ -10,6 +10,7 @@
       <th>Location</th>
       <th>Capacity</th>
       <th>Center</th>
+      <th>Recursos</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,9 @@
         <td><%= room.location %></td>
         <td><%= room.capacity %></td>
         <td><%= room.center %></td>
+        <td>
+          <%= room.resources.map{|r| r.name}.to_sentence %>
+        </td>
         <td><%= link_to 'Show', room %></td>
         <td><%= link_to 'Edit', edit_room_path(room) %></td>
         <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>

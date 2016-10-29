@@ -25,7 +25,7 @@ class RoomsController < ApplicationController
   # POST /rooms.json
   def create
     @room = Room.new(room_params)
-
+    set_resources
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
@@ -41,6 +41,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     respond_to do |format|
+      set_resources
       if @room.update(room_params)
         format.html { redirect_to @room, notice: 'Room was successfully updated.' }
         format.json { render :show, status: :ok, location: @room }
@@ -67,13 +68,12 @@ class RoomsController < ApplicationController
       @room = Room.find(params[:id])
     end
 
+    def set_resources
+      @room.resource_ids = params[:room][:resource_ids].map{|k, v| k}
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      if params[:room][:resource_ids]
-        params[:room][:resource_ids] = params[:room][:resource_ids].map{|k, v| k}
-      else
-        params[:room][:resource_ids] = []
-      end
-      params.require(:room).permit(:name, :description, :location, :capacity, :center_id, :resource_ids)
+      params.require(:room).permit(:name, :description, :location, :capacity, :center_id)
     end
 end
