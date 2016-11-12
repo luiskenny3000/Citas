@@ -5,7 +5,8 @@ class CreateReservations < ActiveRecord::Migration[5.0]
       t.references :teacher, foreign_key: true
       t.references :room, foreign_key: true
       t.references :observation, foreign_key: true
-
+      t.date :date
+      t.integer :hour
       t.timestamps
     end
   end

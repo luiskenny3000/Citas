@@ -20,5 +20,15 @@
   <%= @reservation.observation.name %>
 </p>
 
+<p>
+  <strong>Fecha:</strong>
+  <%= @reservation.date %>
+</p>
+
+<p>
+  <strong>Hora:</strong>
+  <%= @reservation.hour%>
+</p>
+
 <%= link_to 'Editar', edit_reservation_path(@reservation) %> |
 <%= link_to 'Atrás', reservations_path %>

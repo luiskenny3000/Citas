@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label :room_id %>
-    <%= f.select :room_id, options_for_select(Room.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
+    <%= f.select :room_id, options_for_select(Room.all.map{|c| ["#{c.center.name} - #{c.name}", c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
   <div class="field">
     <%= f.label "Fecha Inicial" %>
-    <%= f.date_select :begin %>
+    <%= f.date_select :begin,:order => [:day, :month,:year], start_year:Date.today.year%>
   </div>
 
   <div class="field">
     <%= f.label "Fecha Final" %>
-    <%= f.date_select :end %>
+    <%= f.date_select :end, :order => [:day, :month,:year], start_year:Date.today.year%>
   </div>
 
   <div class="actions">

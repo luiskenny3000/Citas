@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :horaries
   resources :reservations
   resources :disables
   resources :admins

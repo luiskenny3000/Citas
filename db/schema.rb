@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161026040448) do
+ActiveRecord::Schema.define(version: 20161026035030) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "name"
@@ -48,16 +48,6 @@ ActiveRecord::Schema.define(version: 20161026040448) do
     t.index ["room_id"], name: "index_disables_on_room_id"
   end
 
-  create_table "horaries", force: :cascade do |t|
-    t.integer  "reservation_id"
-    t.date     "date"
-    t.time     "hour"
-    t.time     "duration"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["reservation_id"], name: "index_horaries_on_reservation_id"
-  end
-
   create_table "observations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -69,6 +59,8 @@ ActiveRecord::Schema.define(version: 20161026040448) do
     t.integer  "teacher_id"
     t.integer  "room_id"
     t.integer  "observation_id"
+    t.date     "date"
+    t.integer  "hour"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["observation_id"], name: "index_reservations_on_observation_id"
