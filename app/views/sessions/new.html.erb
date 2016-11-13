@@ -1,0 +1,15 @@
+<%= form_tag login_url, method: :post do %>
+    <div class="field">
+      <%= label_tag :user_email, 'Usuario:' %>
+      <%= email_field_tag :user_email %>
+    </div>
+
+    <div class="field">
+      <%= label_tag :password, 'Contraseña:'%>
+      <%= password_field_tag :password %><br/>
+    </div>
+
+    <div class="actions">
+      <%= submit_tag 'Iniciar sesión' %>
+    </div>
+<% end %>

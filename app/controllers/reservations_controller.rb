@@ -1,5 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
+  before_filter :autorize, except: [:new]
+  before_filter :autorize_teacher, only: [:new]
 
   # GET /reservations
   # GET /reservations.json

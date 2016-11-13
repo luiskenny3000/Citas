@@ -1,5 +1,6 @@
 class CentersController < ApplicationController
   before_action :set_center, only: [:show, :edit, :update, :destroy]
+  before_filter :autorize_admin
 
   # GET /centers
   # GET /centers.json

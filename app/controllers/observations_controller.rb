@@ -1,6 +1,7 @@
 class ObservationsController < ApplicationController
   before_action :set_observation, only: [:show, :edit, :update, :destroy]
 
+
   # GET /observations
   # GET /observations.json
   def index
