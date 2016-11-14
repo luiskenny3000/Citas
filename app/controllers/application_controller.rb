@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_filter :get_type
 
   protected
   def autorize_admin
@@ -17,4 +18,9 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
+
+  def get_type
+    @type = session[:user_type]
+  end
+
 end

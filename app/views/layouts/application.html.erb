@@ -13,15 +13,40 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <ul class="nav nav-pills">
-          <li class="<%= 'active' if controller.controller_name == "reservations" %>"><%= link_to "Reservaciones", reservations_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "admins" %>"><%= link_to "Administradores", admins_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "teachers" %>"><%= link_to "Docentes", teachers_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "centers" %>"><%= link_to "Campus", centers_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "departments" %>"><%= link_to "Departamentos", departments_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "rooms" %>"><%= link_to "Salones", rooms_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "resources" %>"><%= link_to "Recursos", resources_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "disables" %>"><%= link_to "No Disponible", disables_path %></li>
-          <li class="<%= 'active' if controller.controller_name == "observations" %>"><%= link_to "Observaciones", observations_path %></li>
+          <% if @type %>
+              <li><%= link_to 'Inicio', reservations_path %></li>
+          <% end %>
+          <% if @type %>
+              <li class="<%= 'active' if controller.controller_name == "reservations" %>"><%= link_to "Reservaciones", reservations_path %></li>
+          <% end %>
+          <% if @type %>
+              <li class="<%= 'active' if controller.controller_name == "rooms" %>"><%= link_to "Salones", rooms_path %></li>
+          <% end %>
+          <% if @type == 'admin' %>
+              <li class="<%= 'active' if controller.controller_name == "admins" %>"><%= link_to "Administradores", admins_path %> </li>
+          <% end %>
+          <% if @type == 'admin' %>
+              <li class="<%= 'active' if controller.controller_name == "teachers" %>"><%= link_to "Docentes", teachers_path %></li>
+          <% end %>
+          <% if @type == 'admin' %>
+              <li class="<%= 'active' if controller.controller_name == "centers" %>"><%= link_to "Campus", centers_path %></li>
+          <% end %>
+          <% if @type == 'admin' %>
+              <li class="<%= 'active' if controller.controller_name == "departments" %>"><%= link_to "Departamentos", departments_path %></li>
+          <% end %>
+          <% if @type == 'admin' %>
+              <li class="<%= 'active' if controller.controller_name == "resources" %>"><%= link_to "Recursos", resources_path %></li>
+          <% end %>
+          <% if @type == 'admin' %>
+              <li class="<%= 'active' if controller.controller_name == "resources" %>"><%= link_to "Recursos", resources_path %></li>
+          <% end %>
+          <% if @type %>
+              <li><%= link_to "Logout", logout_path %> </li>
+          <% end %>
+
+
+
+
         </ul>
       </div>
     </div>

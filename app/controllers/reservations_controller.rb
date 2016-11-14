@@ -30,6 +30,7 @@ class ReservationsController < ApplicationController
 
     respond_to do |format|
       if @reservation.save
+        MailGeneratorMailer.notify_creation(Teacher.find(session[:user_id]), @reservation).deliver
         format.html { redirect_to reservations_path, notice: 'Reservación creada exitosamente.' }
         format.json { render :show, status: :created, location: @reservation }
       else
@@ -57,6 +58,11 @@ class ReservationsController < ApplicationController
   # DELETE /reservations/1.json
   def destroy
     @reservation.destroy
+    if session[:user_type] == 'admin'
+      MailGeneratorMailer.notify_cancell_by_admin(Teacher.find(@reservation.teacher), @reservation).deliver
+    else
+      MailGeneratorMailer.notify_cancell(Teacher.find(@reservation.teacher), @reservation).deliver
+    end
     respond_to do |format|
       format.html { redirect_to reservations_url, notice: 'Reservación eliminada exitosamente.' }
       format.json { head :no_content }
