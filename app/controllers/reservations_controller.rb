@@ -1,4 +1,5 @@
 class ReservationsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
   before_filter :autorize, except: [:new]
   before_filter :autorize_teacher, only: [:new]
@@ -17,6 +18,8 @@ class ReservationsController < ApplicationController
   # GET /reservations/new
   def new
     @reservation = Reservation.new
+    $d = Date.strptime(params[:date],"%Y-%m-%d")
+    $h = params[:hour]
   end
 
   # GET /reservations/1/edit
@@ -27,10 +30,12 @@ class ReservationsController < ApplicationController
   # POST /reservations.json
   def create
     @reservation = Reservation.new(reservation_params)
+    @reservation.date = $d
+    @reservation.hour = $h
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to reservations_path, notice: 'Reservación creada exitosamente.' }
+        format.html { redirect_to index_path, notice: 'Reservación creada exitosamente.' }
         format.json { render :show, status: :created, location: @reservation }
       else
         format.html { render :new }
@@ -44,7 +49,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to reservations_path, notice: 'Reservación actualizada exitosamente.' }
+        format.html { redirect_to index_path, notice: 'Reservación actualizada exitosamente.' }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit }
@@ -58,7 +63,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservación eliminada exitosamente.' }
+      format.html { redirect_to index_path, notice: 'Reservación eliminada exitosamente.' }
       format.json { head :no_content }
     end
   end

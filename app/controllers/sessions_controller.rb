@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def new
   end
 
@@ -11,7 +12,7 @@ class SessionsController < ApplicationController
       if user = Teacher.find_by_email(params[:user_email]) and user.password == params[:password]
         session[:user_id] = user.id
         session[:user_type] = 'teacher'
-        redirect_to reservations_url
+        redirect_to index_path
       else
         render 'new'
       end
