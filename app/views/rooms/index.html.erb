@@ -27,7 +27,7 @@
           <%= room.resources.map{|r| r.name}.to_sentence %>
         </td>
         <td><%= link_to 'Ver', room %></td>
-        <td><%= link_to 'Ver Calendario', "/calendar?room="+room.id.to_s %></td>
+        <td><%= link_to 'Ver Calendario', "/calendar?user="+session[:user_id].to_s+"&room="+room.id.to_s %></td>
         <td><%= link_to 'Editar', edit_room_path(room) %></td>
         <td><%= link_to 'Eliminar', room, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
       </tr>

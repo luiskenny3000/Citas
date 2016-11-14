@@ -7,6 +7,8 @@ var QueryString = function () {
     var pair = vars[i].split("=");
     if ("room".localeCompare(pair[0])===0) {
       query_string[pair[0]] = decodeURIComponent(pair[1]);
+    } else if ("user".localeCompare(pair[0])===0) {
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
     }
   } 
   return query_string;
@@ -121,7 +123,8 @@ class Reservaciones{
 		var direc;
 		//confirm( a.getAttribute('disabled')===null );
 		if( a.getAttribute('disabled')===null ){
-			direc = "/reservations/new?date="+fecha+"&hour="+hora;  
+			direc = "/reservations/new?date="+fecha+"&hour="+hora+"&teacher="+QueryString['user']+"&room="+QueryString['room'];  
+            alert(direc);
 		}
 		else{
 			var idEven = this.getIdEvent(fecha, hora);

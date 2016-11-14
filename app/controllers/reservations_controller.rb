@@ -7,7 +7,11 @@ class ReservationsController < ApplicationController
   # GET /reservations
   # GET /reservations.json
   def index
-    @reservations = Reservation.all
+    if session[:user_type] == 'admin'
+      @reservations = Reservation.all
+    else
+      @reservations = Teacher.find(session[:user_id]).reservations
+    end
   end
 
   # GET /reservations/1
@@ -20,6 +24,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     $d = Date.strptime(params[:date],"%Y-%m-%d")
     $h = params[:hour]
+    $t = params[:teacher]
+    $r = params[:room]
   end
 
   # GET /reservations/1/edit
@@ -32,6 +38,8 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @reservation.date = $d
     @reservation.hour = $h
+    @reservation.teacher_id = $t
+    @reservation.room_id = $r
 
     respond_to do |format|
       if @reservation.save
