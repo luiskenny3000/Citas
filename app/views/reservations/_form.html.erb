@@ -16,11 +16,6 @@
     <%= f.text_field :description %>
   </div>
 
-  <div class="field">
-    <%= f.label "Observación" %>
-    <%= f.select :observation_id, options_for_select(Observation.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
-  </div>
-
   <div class="actions">
     <%= f.submit "Guardar Reservación"%>
   </div>

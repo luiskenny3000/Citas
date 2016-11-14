@@ -16,18 +16,23 @@
 </p>
 
 <p>
-  <strong>Observación:</strong>
-  <%= @reservation.observation.name %>
-</p>
-
-<p>
   <strong>Fecha:</strong>
   <%= @reservation.date %>
 </p>
 
 <p>
   <strong>Hora:</strong>
-  <%= @reservation.hour%>
+  <% if @reservation.hour < 10 %>
+    <td><%= "0"+@reservation.hour.to_s+":00 am"%></td>
+  <% elsif @reservation.hour < 12 %>
+    <td><%=@reservation.hour.to_s+":00 am"%></td>
+  <% elsif @reservation.hour == 12 %>
+    <td><%=@reservation.hour.to_s+":00 m"%></td>
+  <% elsif @reservation.hour < 13 %>
+    <td><%=@reservation.hour.to_s+":00 pm"%></td>
+  <% else %>
+    <td><%= "0"+(@reservation.hour%12).to_s+":00 pm"%></td>
+<%end%>
 </p>
 
 <%= link_to 'Editar', edit_reservation_path(@reservation) %> |

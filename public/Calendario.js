@@ -110,26 +110,17 @@ class Reservaciones{
 	//_____________________________________________________________________________
 	
 	//inserta reservaciones
-    /*
-	insertar( fecha, hora, id){
-		var a = document.getElementById(id);
-		var direc = "/reservations/new?date="+fecha+"&hour="+hora;  
-		$(a).attr('href',direc);
-        $(a).trigger('click');
-	}
-    */
     insertar( fecha, hora, id){
 		var a = document.getElementById(id);
 		var direc;
-		//confirm( a.getAttribute('disabled')===null );
+		
 		if( a.getAttribute('disabled')===null ){
 			direc = "/reservations/new?date="+fecha+"&hour="+hora+"&teacher="+QueryString['user']+"&room="+QueryString['room'];  
-            alert(direc);
+            
 		}
 		else{
 			var idEven = this.getIdEvent(fecha, hora);
             direc = "/reservations/"+idEven;  
-			//direc = "<%= link_to \"Add Product\", '/reservations/new?date="+fecha+"&hour="+hora+"&id="+idEven+"' %>";
 		}
         $(a).attr('href',direc);
         $(a).trigger('click');
@@ -137,9 +128,6 @@ class Reservaciones{
     
     getIdEvent(fecha, hora){
 		for (var i=0; i<horary.length; i++) {
-			//alert(fecha.localeCompare(this.horarios[i]['date'])===0);
-			//alert(this.horarios[i]['hour']+'   '+hora);
-			//confirm
 			if(fecha.localeCompare(horary[i]['date'])===0 && horary[i]['hour']===hora){
 				return horary[i]['id'];
 			}

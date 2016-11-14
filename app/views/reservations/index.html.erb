@@ -8,7 +8,6 @@
       <th>Descripción</th>
       <th>Docente</th>
       <th>Salón</th>
-      <th>Observaciones</th>
       <th>Fecha</th>
       <th>Hora</th>
       <th colspan="3"></th>
@@ -21,9 +20,20 @@
         <td><%= reservation.description %></td>
         <td><%= reservation.teacher.name %></td>
         <td><%= reservation.room.name %> <%= reservation.room.location%></td>
-        <td><%= reservation.observation.name %></td>
         <td><%= reservation.date%></td>
-        <td><%= reservation.hour%></td>
+
+        <% if reservation.hour < 10 %>
+            <td><%= "0"+reservation.hour.to_s+":00 am"%></td>
+        <% elsif reservation.hour < 12 %>
+            <td><%=reservation.hour.to_s+":00 am"%></td>
+        <% elsif reservation.hour == 12 %>
+            <td><%=reservation.hour.to_s+":00 m"%></td>
+        <% elsif reservation.hour < 13 %>
+            <td><%=reservation.hour.to_s+":00 pm"%></td>
+        <% else %>
+            <td><%= "0"+(reservation.hour%12).to_s+":00 pm"%></td>
+        <%end%>
+
         <td><%= link_to 'Ver', reservation %></td>
         <td><%= link_to 'Editar', edit_reservation_path(reservation) %></td>
         <td><%= link_to 'Eliminar', reservation, method: :delete, data: { confirm: '¿Está seguro?' } %></td>
@@ -33,5 +43,3 @@
 </table>
 
 <br>
-
-<%= link_to 'Nueva Reservación', new_reservation_path %>
