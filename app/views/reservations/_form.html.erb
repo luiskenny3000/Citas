@@ -31,16 +31,6 @@
     <%= f.select :observation_id, options_for_select(Observation.all.map{|c| [c.name, c.id]}), {}, {class: "", data: {"live-search": true}} %>
   </div>
 
-  <div class="field">
-    <%= f.label "Fecha" %>
-    <%= f.date_select :date, :order => [:day, :month,:year], start_year:Date.today.year%>
-  </div>
-
-  <div class="field">
-    <%= f.label "Hora" %>
-    <%= f.number_field :hour, min:7, max:20 %>
-  </div>
-
   <div class="actions">
     <%= f.submit "Guardar Reservación"%>
   </div>
