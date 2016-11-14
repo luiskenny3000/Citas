@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       if user = Teacher.find_by_email(params[:user_email]) and user.password == params[:password]
         session[:user_id] = user.id
         session[:user_type] = 'teacher'
-        redirect_to index_path
+        redirect_to root_path
       else
         render 'new'
       end

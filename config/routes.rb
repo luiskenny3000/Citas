@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :departments
   resources :centers
 
-  get '/index', to: 'public#index', as: "index"
+  root "rooms#index"
+  get '/calendar', to: 'public#calendar', as: "calendar"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_admin, only: [:show, :edit, :update, :destroy]
   before_filter :autorize_admin
 

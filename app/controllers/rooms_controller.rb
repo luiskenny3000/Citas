@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_room, only: [:show, :edit, :update, :destroy]
   before_filter :autorize, only: [:show, :index]
   before_filter :autorize_admin, except: [:show, :index]

@@ -1,7 +1,20 @@
 //===========================================================================================================
+var QueryString = function () {
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+    if ("room".localeCompare(pair[0])===0) {
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
+    }
+  } 
+  return query_string;
+}();
+
 var horary = new Array();
 
-function request(){
+function request(){    
     $.get('http://localhost:3000/reservations.json').done(function( data, error ) {    
         if(data.length>5000){
             document.location.href="/login";
@@ -11,7 +24,25 @@ function request(){
                 temp['date']=data[k].date;
                 temp['hour']=data[k].hour;
                 temp['description']=data[k].description;
+                temp['room_id']=data[k].room_id;
+                horary.push(temp);
+            }
+            init();
+        }
+    });
+}
+
+function requestRooms(){
+    $.get('http://localhost:3000/rooms.json').done(function( data, error ) {    
+        if(data.length>5000){
+            document.location.href="/login";
+        } else {
+            for(var k=0;k<data.length;k++){
+                var temp = new Array();
                 temp['id']=data[k].id;
+                temp['name']=data[k].name;
+                temp['description']=data[k].description;
+                temp['room_id']=data[k].id;
                 horary.push(temp);
             }
             init();
@@ -31,7 +62,7 @@ class Reservaciones{
 		var idBoton;
 		
 		for (var i=0; i<horary.length; i++) {
-			if(fecha.localeCompare(horary[i]['date']) === 0){
+			if(fecha.localeCompare(horary[i]['date']) === 0 && horary[i]['room_id']===parseInt(QueryString['room'])){
 				id = this.getPosHora(horary[i]['hour']);
 				evento = document.getElementById("evento"+id);
 				$(evento).empty();
@@ -77,11 +108,40 @@ class Reservaciones{
 	//_____________________________________________________________________________
 	
 	//inserta reservaciones
+    /*
 	insertar( fecha, hora, id){
 		var a = document.getElementById(id);
 		var direc = "/reservations/new?date="+fecha+"&hour="+hora;  
 		$(a).attr('href',direc);
         $(a).trigger('click');
+	}
+    */
+    insertar( fecha, hora, id){
+		var a = document.getElementById(id);
+		var direc;
+		//confirm( a.getAttribute('disabled')===null );
+		if( a.getAttribute('disabled')===null ){
+			direc = "/reservations/new?date="+fecha+"&hour="+hora;  
+		}
+		else{
+			var idEven = this.getIdEvent(fecha, hora);
+            direc = "/reservations/"+idEven;  
+			//direc = "<%= link_to \"Add Product\", '/reservations/new?date="+fecha+"&hour="+hora+"&id="+idEven+"' %>";
+		}
+        $(a).attr('href',direc);
+        $(a).trigger('click');
+	}
+    
+    getIdEvent(fecha, hora){
+		for (var i=0; i<horary.length; i++) {
+			//alert(fecha.localeCompare(this.horarios[i]['date'])===0);
+			//alert(this.horarios[i]['hour']+'   '+hora);
+			//confirm
+			if(fecha.localeCompare(horary[i]['date'])===0 && horary[i]['hour']===hora){
+				return horary[i]['id'];
+			}
+		}
+		return 0;
 	}
 	//_____________________________________________________________________________
 	
@@ -252,7 +312,8 @@ function init(){
 			var evento = document.getElementById( "evento"+(this.id-100) ).value;
 			var hora = obtenerHora( this.id );
 			
-			reservaciones.insertar(fecha, hora, this.id);
+			//reservaciones.insertar(fecha, hora, this.id);
+            reservaciones.insertar(fecha, parseInt(hora), this.id);
 			
 			reservaciones.establecerHorarios();
 			reservaciones.tablaHora(year+'-'+(mes+1)+'-'+day);

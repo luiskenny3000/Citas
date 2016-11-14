@@ -1,4 +1,5 @@
 class TeachersController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
   before_filter :autorize_admin
 
