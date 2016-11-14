@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_filter :autorize, only: [:show, :index]
+  before_filter :autorize_admin, except: [:show, :index]
 
   # GET /rooms
   # GET /rooms.json

@@ -1,5 +1,6 @@
 class DisablesController < ApplicationController
   before_action :set_disable, only: [:show, :edit, :update, :destroy]
+  before_filter :autorize_admin
 
   # GET /disables
   # GET /disables.json
